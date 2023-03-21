@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+
+<div class="row">
+      
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+
+        <h4 class="card-title">Kontenjanlar</h4>
+      </div>
+
+      
+
+      <div class="card-body">
+
+        {% if items %}
+
+
+        <div>
+          <div>
+
+          </div>
+          <h4>Branşlar</h4>
+
+          {% for unvan in punvani %}
+
+            <div class="w3-container">
+            <div class="responsive">
+              <p><span class="w3-tag w3-teal"><a href="{{unvan}}">{{unvan}}</a></span></p>
+            </div>
+
+          </div>
+         
+          {% endfor %}
+
+        </div>
+
+        </tbody>
+      </table>
+         </div>
+
+        <form>
+          {% csrf_token %} 
+         <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Şehir Ara...">
+       <button type="submit" class="btn btn-danger">Şehir Ara</button>
+     </form>
+
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Kodu</th>
+                <th>Sb Kodu</th>
+                <th>Kurum</th>
+                <th>Branş</th>
+                <th>Şehir</th>
+                <th>Kontenjan</th>
+                <th></th>
+              </tr>
+            </thead>
+
+
+
+
+            <tbody>
+        
+              
+              {% for item in items %}
+        
+              <tr>
+                
+                <td>{{ item.tip }}
+                <td>{{ item.kodu }}</td>
+                <td>{{ item.sbkodu }} </td>
+                <td>{{ item.kurumadı }}</td>
+                <td>{{ item.punvani}}</td>
+                <td>{{ item.sehir }}</td>
+                <td>{{ item.sayi }}</td>
+                
+
+        
+        
+              </tr>
+        
+              {% endfor %}
+            </tbody>
+          </table>
+
+          {% else %}
+            
+          <div class = "alert alert-danger">
+              Şehir Bulunamadı
+          
+          </div>
+          {% endif %}
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+{% endblock body %}
